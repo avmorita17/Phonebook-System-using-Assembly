@@ -1,0 +1,444 @@
+;------------------------------------DELETE FUNCTION
+delC	proc near
+		call cls
+		call emptyq
+		cmp e,0
+		je againd
+		jne Cempty
+	againd:	call promptS
+	;--------------------------searching for the slot number input 		
+			cmp s1, '0'
+			je onesd
+			jne incorrectD
+	onesd:	cmp s2, '0'
+			je CdelC0
+			jne d1
+	d1:		cmp s2, '1'
+			je CdelC1
+			jne d2
+	d2:		cmp s2, '2'
+			je CdelC2
+			jne d3
+	d3:		cmp s2, '3'
+			je CdelC3
+			jne d4
+	d4:		cmp s2, '4'
+			je Cdelc4
+			jne d5
+	d5:		cmp s2, '5'
+			je CdelC5
+			jne d6
+	d6:		cmp s2, '6'
+			je CdelC6
+			jne d7
+	d7:		cmp s2, '7'
+			je CdelC7
+			jne d8
+	d8: 	cmp s2, '8'
+			je CdelC8
+			jne d9
+	d9:		cmp s2, '9'
+			je CdelC9
+			jne incorrectD
+
+	incorrectD:	mov ah,9
+			lea dx, errorSlot
+			int 21h
+			jmp againd
+	Cempty:	call printEmpty	
+			jmp delokay
+			
+	CdelC0: call delC0
+			jmp delokay
+	CdelC1: call delC1
+			jmp delokay
+	CdelC2: call delC2
+			jmp delokay
+	CdelC3: call delC3
+			jmp delokay
+	CdelC4: call delC4
+			jmp delokay
+	CdelC5: call delC5
+			jmp delokay
+	CdelC6: call delC6
+			jmp delokay
+	CdelC7: call delC7
+			jmp delokay
+	CdelC8: call delC8
+			jmp delokay
+	CdelC9: call delC9
+			jmp delokay
+	
+	
+	delokay: ret
+		
+			
+delC	endp		
+;-------------------------------------
+pressenterd		proc near		
+				mov ah,9
+				lea dx, prENTER
+				int 21h
+			mov ah, 1
+			int 21h
+			cmp al, 13
+			jne pressenterd
+			ret
+pressenterd endp
+stopd			proc near
+				mov ah, 9
+				lea dx, pstopd
+				int 21h
+				call pressenterd
+				call delC
+				ret
+stopd	endp
+successd	proc near
+			mov ah,9
+			lea dx, pSuccessd
+			int 21h
+			call pressenterd
+			ret
+successd	endp
+emptyq		proc near
+			mov e, 0
+			cmp num0,0
+			je e1
+			jne goback
+		e1:	cmp num1,0
+			je e2
+			jne goback
+		e2:	cmp num2,0
+			je e3
+			jne goback
+		e3: cmp num3, 0
+			je e4
+			jne goback
+		e4: cmp num4, 0
+			je e5
+			jne goback
+		e5: cmp num5, 0
+			je e6
+			jne goback
+		e6: cmp num6, 0
+			je e7
+			jne goback
+		e7: cmp num7, 0
+			je e8
+			jne goback
+		e8: cmp num8, 0
+			je e9
+			jne goback
+		e9: cmp num9, 0
+			je e10
+			jne goback
+			
+		e10: mov e, 1
+		goback: ret
+emptyq	endp
+printEmpty proc near
+		gotoxy 0,15
+		lea dx, emptyprompt
+		call cout
+		call pressenterd
+		call welcome
+		ret
+printEmpty	endp
+
+promptD	proc near
+		mov choice, 'N'
+		lea dx, promptDelete
+		mov ah,9
+		int 21h
+		
+		mov ah,1
+		int 21h
+		
+		mov choiceD, al
+		ret
+promptD endp
+			
+			
+;----------------------------------------DELETE CONTACT
+delC0	proc near
+			cmp num0, 0
+			je dstop0
+			jne gd0
+		gd0: lea dx, header
+				mov ah, 9
+				int 21h
+		
+			call print0
+			call promptD
+		
+			cmp choiceD, 'Y'
+			je goad0
+			jne delokay0
+		
+		goad0:	cmp name0,0
+			je dstop0
+			jne god0
+		god0: mov num0, 0
+				mov name0,0
+			  jmp dsuccess0
+			
+			
+		dstop0: call stopd
+				jmp delokay0
+		dsuccess0: call successd
+		delokay0: ret
+delC0	endp
+
+delC1	proc near
+			cmp num1, 0
+			je dstop1
+			jne gd1
+		gd1: lea dx, header
+				mov ah, 9
+				int 21h
+		
+			call print1
+			call promptD
+		
+			cmp choiceD, 'Y'
+			je goad1
+			jne delokay1
+		
+		goad1:cmp name1, 0
+			je dstop1
+			jne god1
+		god1: mov num1, 0
+				mov name1,0
+			  jmp dsuccess1
+			
+			
+		dstop1: call stopd
+				jmp delokay1
+		dsuccess1: call successd
+		delokay1: ret
+delC1	endp
+
+delC2	proc near
+			cmp num2, 0
+			je dstop2
+			jne gd2
+		gd2: lea dx, header
+				mov ah, 9
+				int 21h
+		
+			call print2
+			call promptD
+		
+			cmp choiceD, 'Y'
+			je goad2
+			jne delokay2
+		
+		goad2: cmp name2, 0
+			je dstop2
+			jne god2
+		god2: mov num2, 0
+			mov name2,0
+			  jmp dsuccess2
+			
+			
+		dstop2: call stopd
+				jmp delokay2
+		dsuccess2: call successd
+		delokay2: ret
+delC2	endp
+delC3	proc near
+			cmp num3, 0
+			je dstop3
+			jne gd3
+		gd3: lea dx, header
+				mov ah, 9
+				int 21h
+		
+			call print3
+			call promptD
+		
+			cmp choiceD, 'Y'
+			je goad3
+			jne delokay3
+		
+		goad3:cmp name3, 0
+			je dstop3
+			jne god3
+		god3: mov num3, 0
+			mov name3,0
+			  jmp dsuccess3
+			
+			
+		dstop3: call stopd
+				jmp delokay3
+		dsuccess3: call successd
+		delokay3: ret
+delC3	endp
+delC4	proc near
+			cmp num4, 0
+			je dstop4
+			jne gd4
+		gd4: lea dx, header
+				mov ah, 9
+				int 21h
+		
+			call print4
+			call promptD
+		
+			cmp choiceD, 'Y'
+			je goad4
+			jne delokay4
+		
+		goad4:cmp name4, 0
+			je dstop4
+			jne god4
+		god4: mov num4, 0
+				mov name4,0
+			  jmp dsuccess4
+			
+			
+		dstop4: call stopd
+				jmp delokay4
+		dsuccess4: call successd
+		delokay4: ret
+delC4	endp
+delC5	proc near
+			cmp num5, 0
+			je dstop5
+			jne gd5
+		gd5: lea dx, header
+				mov ah, 9
+				int 21h
+		
+			call print5
+			call promptD
+		
+			cmp choiceD, 'Y'
+			je goad5
+			jne delokay5
+		
+		goad5:cmp name5, 0
+			je dstop5
+			jne god5
+		god5: mov num5, 0
+			mov name5,0
+			  jmp dsuccess5
+			
+			
+		dstop5: call stopd
+				jmp delokay5
+		dsuccess5: call successd
+		delokay5: ret
+delC5	endp
+delC6	proc near
+			cmp num6, 0
+			je dstop6
+			jne gd6
+		gd6:lea dx, header
+				mov ah, 9
+				int 21h
+		
+			call print6
+			call promptD
+		
+			cmp choiceD, 'Y'
+			je goad6
+			jne delokay6
+		
+		goad6:cmp name6, 0
+			je dstop6
+			jne god6
+		god6: mov num6, 0
+			mov name6,0
+			  jmp dsuccess6
+			
+			
+		dstop6: call stopd
+				jmp delokay6
+		dsuccess6: call successd
+		delokay6: ret
+delC6	endp
+delC7	proc near
+			cmp num7, 0
+			je dstop7
+			jne gd7
+		gd7:lea dx, header
+				mov ah, 9
+				int 21h
+		
+			call print7
+			call promptD
+		
+			cmp choiceD, 'Y'
+			je goad7
+			jne delokay7
+		
+		goad7:cmp name7, 0
+			je dstop7
+			jne god7
+		god7: mov num7, 0
+			mov name7,0
+			  jmp dsuccess7
+			
+			
+		dstop7: call stopd
+				jmp delokay7
+		dsuccess7: call successd
+		delokay7: ret
+delC7	endp
+delC8	proc near
+			cmp num8, 0
+			je dstop8
+			jne gd8
+		gd8: lea dx, header
+				mov ah, 9
+				int 21h
+		
+			call print8
+			call promptD
+		
+			cmp choiceD, 'Y'
+			je goad8
+			jne delokay8
+		
+		goad8:cmp name8, 0
+			je dstop8
+			jne god8
+		god8: mov num8, 0
+			mov name8,0
+			  jmp dsuccess8
+			
+			
+		dstop8: call stopd
+				jmp delokay8
+		dsuccess8: call successd
+		delokay8: ret
+delC8	endp
+delC9	proc near
+			cmp num9, 0
+			je dstop9
+			jne gd9
+		gd9:lea dx, header
+				mov ah, 9
+				int 21h
+		
+			call print9
+			call promptD
+		
+			cmp choiceD, 'Y'
+			je goad9
+			jne delokay9
+		
+		goad9:cmp name9, 0
+			je dstop9
+			jne god9
+		god9: mov num9, 0
+			  mov name9,0
+			  jmp dsuccess9
+			
+			
+		dstop9: call stopd
+				jmp delokay9
+		dsuccess9: call successd
+		delokay9: ret
+delC9	endp

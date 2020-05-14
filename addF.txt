@@ -1,0 +1,378 @@
+;-----------------------------------------------ADD Contact Function
+addC		proc near
+	again:		call cls
+		call promptS
+	;--------------------------searching for the slot number input 		
+	fnd:	cmp s1, '0'
+			je ones
+			jne incorrect1
+	ones:	cmp s2, '0'
+			je CaddC0
+			jne c1
+	c1:		cmp s2, '1'
+			je CaddC1
+			jne c2
+	c2:		cmp s2, '2'
+			je CaddC2
+			jne c3
+	c3:		cmp s2, '3'
+			je CaddC3
+			jne c4
+	c4:		cmp s2, '4'
+			je Caddc4
+			jne c5
+	c5:		cmp s2, '5'
+			je CaddC5
+			jne c6
+	c6:		cmp s2, '6'
+			je CaddC6
+			jne c7
+	c7:		cmp s2, '7'
+			je CaddC7
+			jne c8
+	c8: 	cmp s2, '8'
+			je CaddC8
+			jne c9
+	c9:		cmp s2, '9'
+			je CaddC9
+			jne incorrect1	
+
+	incorrect1:	gotoxy 0, 7
+			lea dx, errorSlot
+			call cout
+			jmp again	
+			
+	CaddC0: call addC0
+			jmp addokay
+	CaddC1: call addC1
+			jmp addokay
+	CaddC2: call addC2
+			jmp addokay
+	CaddC3: call addC3
+			jmp addokay
+	CaddC4: call addC4
+			jmp addokay
+	CaddC5: call addC5
+			jmp addokay
+	CaddC6: call addC6
+			jmp addokay
+	CaddC7: call addC7
+			jmp addokay
+	CaddC8: call addC8
+			jmp addokay
+	CaddC9: call addC9
+			jmp addokay
+			
+	addokay: ret
+addC		endp
+;----------------------------------------------------				
+stop 			proc near
+				mov ah, 9
+				lea dx, pstop
+				int 21h
+				call pressenter
+				call addC
+				ret
+				
+stop endp
+
+success		proc near
+			mov ah,9
+			lea dx, pSuccess
+			int 21h
+			call pressenter
+			ret
+	
+success endp
+;-------------------------------
+pressenter		proc near		
+				mov ah,9
+				lea dx, prENTER
+				int 21h
+			mov ah, 1
+			int 21h
+			cmp al, 13
+			jne pressenter
+			ret
+pressenter endp
+;-----------------------------------------------------
+addC0		proc near
+			cmp num0, 0
+			je gn0
+			jne stop0
+		gn0:cmp name0, 0
+			je go0
+			jne stop0
+		go0:	call pName
+				mov si, offset name0
+				call inString
+				cmp name0, 0
+				jne go0a
+				call errorIn
+				jmp go0
+		go0a:	call pNum
+				mov si, offset num0
+				call inString
+				cmp num0, 0
+				jne success0
+				call errorIn
+				jmp go0a	
+				
+			stop0: call stop
+				jmp addokay0
+		success0: call success
+		addokay0: ret
+addC0	endp
+;---------------------------------------------------
+addC1  	proc near
+			cmp num1, 0
+			je gn1
+			jne stop1
+		gn1:cmp name1, 0
+			je go1
+			jne stop1
+		go1:	call pName
+				mov si, offset name1
+				call inString
+				cmp name1, 0
+				jne go1a
+				call errorIn
+				jmp go1
+		go1a:	call pNum
+				mov si, offset num1
+				call inString
+				cmp num1, 0
+				jne success1
+				call errorIn
+				jmp go1a	
+		
+		stop1: call stop
+				jmp addokay1
+		success1: call success
+		addokay1: ret
+addC1		endp
+;-----------------------------------------------------
+addC2		proc near
+			cmp num2, 0
+			je gn2
+			jne stop2
+		gn2:cmp name2, 0
+			je go2
+			jne stop2
+		go2:	call pName
+				mov si, offset name2
+				call inString
+				cmp name2, 0
+				jne go2a
+				call errorIn
+				jmp go2
+		go2a:	call pNum
+				mov si, offset num2
+				call inString
+				cmp num2, 0
+				jne success2
+				call errorIn
+				jmp go2a	
+				
+			stop2: call stop
+				jmp addokay2
+		success2: call success
+		addokay2: ret
+addC2	endp
+;-----------------------------------------------------
+addC3		proc near
+			cmp num3, 0
+			je gn3
+			jne stop3
+		gn3:cmp name3, 0
+			je go3
+			jne stop3
+		go3:	call pName
+				mov si, offset name3
+				call inString
+				cmp name3, 0
+				jne go3a
+				call errorIn
+				jmp go3
+		go3a:	call pNum
+				mov si, offset num3
+				call inString
+				cmp num3, 0
+				jne success3
+				call errorIn
+				jmp go3a	
+				
+			stop3: call stop
+				jmp addokay3
+		success3: call success
+		addokay3: ret
+addC3	endp
+;-----------------------------------------------------
+addC4		proc near
+			cmp num4, 0
+			je gn4
+			jne stop4
+		gn4:cmp name4, 0
+			je go4
+			jne stop4
+		go4:	call pName
+				mov si, offset name4
+				call inString
+				cmp name4, 0
+				jne go4a
+				call errorIn
+				jmp go4
+		go4a:	call pNum
+				mov si, offset num4
+				call inString
+				cmp num4, 0
+				jne success4
+				call errorIn
+				jmp go4a	
+				
+			stop4: call stop
+				jmp addokay4
+		success4: call success
+		addokay4: ret
+addC4	endp
+;-----------------------------------------------------
+addC5		proc near
+			cmp num5, 0
+			je gn5
+			jne stop5
+		gn5:cmp name5, 0
+			je go5
+			jne stop5
+		go5:	call pName
+				mov si, offset name5
+				call inString
+				cmp name5, 0
+				jne go5a
+				call errorIn
+				jmp go5
+		go5a:	call pNum
+				mov si, offset num5
+				call inString
+				cmp num5, 0
+				jne success5
+				call errorIn
+				jmp go5a	
+				
+			stop5: call stop
+				jmp addokay5
+		success5: call success
+		addokay5: ret
+addC5	endp
+;-----------------------------------------------------
+addC6		proc near
+			cmp num6, 0
+			je gn6
+			jne stop6
+		gn6:cmp name6, 0
+			je go6
+			jne stop6
+		go6:	call pName
+				mov si, offset name6
+				call inString
+				cmp name6, 0
+				jne go6a
+				call errorIn
+				jmp go6
+		go6a:	call pNum
+				mov si, offset num6
+				call inString
+				cmp num6, 0
+				jne success6
+				call errorIn
+				jmp go6a	
+				
+			stop6: call stop
+				jmp addokay6
+		success6: call success
+		addokay6: ret
+addC6	endp
+;-----------------------------------------------------
+addC7		proc near
+			cmp num7, 0
+			je gn7
+			jne stop7
+		gn7:cmp name7, 0
+			je go7
+			jne stop7
+		go7:	call pName
+				mov si, offset name7
+				call inString
+				cmp name7, 0
+				jne go7a
+				call errorIn
+				jmp go7
+		go7a:	call pNum
+				mov si, offset num7
+				call inString
+				cmp num7, 0
+				jne success7
+				call errorIn
+				jmp go7a	
+				
+			stop7: call stop
+				jmp addokay7
+		success7: call success
+		addokay7: ret
+addC7	endp
+;-----------------------------------------------------
+addC8		proc near
+			cmp num8, 0
+			je gn8
+			jne stop8
+		gn8:cmp name8, 0
+			je go8
+			jne stop8
+		go8:	call pName
+				mov si, offset name8
+				call inString
+				cmp name8, 0
+				jne go8a
+				call errorIn
+				jmp go8
+		go8a:	call pNum
+				mov si, offset num8
+				call inString
+				cmp num8, 0
+				jne success8
+				call errorIn
+				jmp go8a	
+				
+			stop8: call stop
+				jmp addokay8
+		success8: call success
+		addokay8: ret
+addC8	endp
+;-----------------------------------------------------
+addC9		proc near
+			cmp num9, 0
+			je gn9
+			jne stop9
+		gn9:cmp name9, 0
+			je go9
+			jne stop9
+		go9:	call pName
+				mov si, offset name9
+				call inString
+				cmp name9, 0
+				jne go9a
+				call errorIn
+				jmp go9
+		go9a:	call pNum
+				mov si, offset num9
+				call inString
+				cmp num9, 0
+				jne success9
+				call errorIn
+				jmp go9a	
+				
+			stop9: call stop
+				jmp addokay9
+		success9: call success
+		addokay9: ret
+addC9	endp
+

@@ -1,0 +1,478 @@
+;-----------------------------------------------EDIT Contact Function
+editC		proc near
+	againe:		call cls
+			call promptS
+	;--------------------------searching for the slot number input 		
+			cmp s1, '0'
+			je edi0
+			jne incorrect1ed
+	edi0:	cmp s2, '0'
+			je Ced0
+			jne edi1
+	edi1:	cmp s2, '1'
+			je Ced1
+			jne edi2
+	edi2:		cmp s2, '2'
+			je Ced2
+			jne edi3
+	edi3:		cmp s2, '3'
+			je Ced3
+			jne edi4
+	edi4:		cmp s2, '4'
+			je Ced4
+			jne edi5
+	edi5:		cmp s2, '5'
+			je Ced5
+			jne edi6
+	edi6:		cmp s2, '6'
+			je Ced6
+			jne edi7
+	edi7:		cmp s2, '7'
+			je Ced7
+			jne edi8
+	edi8: 	cmp s2, '8'
+			je Ced8
+			jne edi9
+	edi9:		cmp s2, '9'
+			je Ced9
+			jne incorrect1ed
+
+	incorrect1ed:	mov ah,9
+			lea dx, errorSlot
+			int 21h
+			jmp againe	
+			
+	Ced0: call editC0
+			jmp editok
+	Ced1: call editC1
+			jmp editok
+	Ced2: call editC2
+			jmp editok
+	Ced3: call editC3
+			jmp editok
+	Ced4: call editC4
+			jmp editok
+	Ced5: call editC5
+			jmp editok
+	Ced6: call editC6
+			jmp editok
+	Ced7: call editC7
+			jmp editok
+	Ced8: call editC8
+			jmp editok
+	Ced9: call editC9
+			jmp editok
+			
+	editok: ret
+editC		endp
+;----------------------------------------------------
+successe	proc near
+			mov ah,9
+			lea dx, pSuccesse
+			int 21h
+			call pressenterd
+			ret
+successe	endp
+promptE	proc near
+		mov choice, 'N'
+		lea dx, promptEdit
+		mov ah,9
+		int 21h
+		
+		mov ah,1
+		int 21h
+		
+		mov choice, al
+		ret
+promptE endp
+
+stope	proc near
+		mov ah, 9
+		lea dx, pstopd
+		int 21h
+		call pressenterd
+		call editC
+		ret
+stope	endp
+;-------------------------------------------------EDIT CONTACT
+editC0 proc near
+		
+		cmp name0,0
+		jne ch0
+		je Cnoedit0
+		Cnoedit0: call stope
+				  jmp bye0
+					
+		
+		ch0: lea dx, header
+				mov ah, 9
+				int 21h
+			call print0
+			call promptE
+			
+			cmp choice, 'Y'
+			je goed0
+			jne bye0
+			
+		
+		goed0:	call pName
+				mov si, offset name0
+				call inString
+				cmp name0, 0
+				jne goed0a
+				call errorIn
+				jmp goed0
+		goed0a:	call pNum
+				mov si, offset num0
+				call inString
+				cmp num0, 0
+				jne successe0
+				call errorIn
+				jmp goed0a	
+		
+		successe0: call successe
+		bye0:ret
+editC0	endp
+editC1 proc near
+		
+		
+		cmp name1, 0
+		jne ch1
+		je Cnoedit1
+		Cnoedit1: call stope
+					jmp bye1
+					
+		
+		ch1: lea dx, header
+		mov ah, 9
+		int 21h
+		call print1
+			call promptE
+		
+			cmp choice, 'Y'
+			je goed1
+			jne bye1
+		
+		goed1:	call pName
+				mov si, offset name1
+				call inString
+				cmp name1, 0
+				jne goed1a
+				call errorIn
+				jmp goed1
+		goed1a:	call pNum
+				mov si, offset num1
+				call inString
+				cmp num1, 0
+				jne successe1
+				call errorIn
+				jmp goed1a	
+		
+		successe1: call successe
+		bye1:ret
+editC1	endp
+editC2 proc near
+		
+		
+		cmp name2, 0
+		jne ch2
+		je Cnoedit2
+		Cnoedit2: call stope
+					jmp bye2
+					
+		
+		ch2: lea dx, header
+		mov ah, 9
+		int 21h
+		call print2
+			call promptE
+		
+			cmp choice, 'Y'
+			je goed2
+			jne bye2
+		
+		goed2:	call pName
+				mov si, offset name2
+				call inString
+				cmp name2, 0
+				jne goed2a
+				call errorIn
+				jmp goed2
+		goed2a:	call pNum
+				mov si, offset num2
+				call inString
+				cmp num2, 0
+				jne successe2
+				call errorIn
+				jmp goed2a	
+		
+		successe2: call successe
+		bye2:ret
+editC2	endp
+editC3 proc near
+		
+		
+		cmp name3, 0
+		jne ch3
+		je Cnoedit3
+		Cnoedit3: call stope
+				jmp bye3
+					
+		
+		ch3: lea dx, header
+		mov ah, 9
+		int 21h
+		call print3
+			call promptE
+		
+			cmp choice, 'Y'
+			je goed3
+			jne bye3
+		
+		goed3:	call pName
+				mov si, offset name3
+				call inString
+				cmp name3, 0
+				jne goed3a
+				call errorIn
+				jmp goed3
+		goed3a:	call pNum
+				mov si, offset num3
+				call inString
+				cmp num3, 0
+				jne successe3
+				call errorIn
+				jmp goed3a	
+		
+		successe3: call successe
+		bye3:ret
+editC3	endp
+editC4 proc near
+		
+		
+		cmp name4, 0
+		jne ch4
+		je Cnoedit4
+		Cnoedit4: call stope
+				jmp bye4
+					
+		
+		ch4: lea dx, header
+		mov ah, 9
+		int 21h
+		call print4
+			call promptE
+		
+			cmp choice, 'Y'
+			je goed4
+			jne bye4
+		
+		goed4:	call pName
+				mov si, offset name4
+				call inString
+				cmp name4, 0
+				jne goed4a
+				call errorIn
+				jmp goed4
+		goed4a:	call pNum
+				mov si, offset num4
+				call inString
+				cmp num4, 0
+				jne successe4
+				call errorIn
+				jmp goed4a	
+		
+		successe4: call successe
+		bye4:ret
+editC4	endp
+editC5 proc near
+		
+		
+		cmp name5, 0
+		jne ch5
+		je Cnoedit5
+		Cnoedit5: call stope
+				jmp bye5
+					
+		
+		ch5: lea dx, header
+		mov ah, 9
+		int 21h
+		call print5
+			call promptE
+		
+			cmp choice, 'Y'
+			je goed5
+			jne bye5
+		
+		goed5:	call pName
+				mov si, offset name5
+				call inString
+				cmp name5, 0
+				jne goed5a
+				call errorIn
+				jmp goed5
+		goed5a:	call pNum
+				mov si, offset num5
+				call inString
+				cmp num5, 0
+				jne successe5
+				call errorIn
+				jmp goed5a	
+		
+		successe5: call successe
+		bye5:ret
+editC5	endp
+editC6 proc near
+		
+		cmp name6, 0
+		jne ch6
+		je Cnoedit6
+		Cnoedit6: call stope
+				jmp bye6
+					
+		
+		ch6: lea dx, header
+		mov ah, 9
+		int 21h
+		call print6
+			call promptE
+		
+			cmp choice, 'Y'
+			je goed6
+			jne bye6
+		
+		goed6:	call pName
+				mov si, offset name6
+				call inString
+				cmp name6, 0
+				jne goed6a
+				call errorIn
+				jmp goed6
+		goed6a:	call pNum
+				mov si, offset num6
+				call inString
+				cmp num6, 0
+				jne successe6
+				call errorIn
+				jmp goed6a	
+		
+		successe6: call successe
+		bye6:ret
+editC6	endp
+editC7 proc near
+		
+		
+		cmp name7, 0
+		jne ch7
+		je Cnoedit7
+		Cnoedit7: call stope
+					jmp bye7
+					
+		
+		ch7: lea dx, header
+		mov ah, 9
+		int 21h
+		call print7
+			call promptE
+		
+			cmp choice, 'Y'
+			je goed7
+			jne bye7
+		
+		goed7:	call pName
+				mov si, offset name7
+				call inString
+				cmp name7, 0
+				jne goed7a
+				call errorIn
+				jmp goed7
+		goed7a:	call pNum
+				mov si, offset num7
+				call inString
+				cmp num7, 0
+				jne successe7
+				call errorIn
+				jmp goed7a	
+		
+		successe7: call successe
+		bye7:ret
+editC7	endp
+editC8 proc near
+		
+		
+		cmp name8, 0
+		jne ch8
+		je Cnoedit8
+		Cnoedit8: call stope
+				jmp bye8
+					
+		
+		ch8: lea dx, header
+		mov ah, 9
+		int 21h
+		call print8
+			call promptE
+		
+			cmp choice, 'Y'
+			je goed8
+			jne bye8
+		
+		goed8:	call pName
+				mov si, offset name8
+				call inString
+				cmp name8, 0
+				jne goed8a
+				call errorIn
+				jmp goed8
+		goed8a:	call pNum
+				mov si, offset num8
+				call inString
+				cmp num8, 0
+				jne successe8
+				call errorIn
+				jmp goed8a	
+		
+		successe8: call successe
+		bye8:ret
+editC8	endp
+editC9 proc near
+		
+		
+		cmp name9, 0
+		jne ch9
+		je Cnoedit9
+		Cnoedit9: call stope
+		jmp bye9
+					
+		
+		ch9: lea dx, header
+		mov ah, 9
+		int 21h
+		call print9
+			call promptE
+		
+			cmp choice, 'Y'
+			je goed9
+			jne bye9
+		
+		goed9:	call pName
+				mov si, offset name9
+				call inString
+				cmp name9, 0
+				jne goed9a
+				call errorIn
+				jmp goed9
+		goed9a:	call pNum
+				mov si, offset num9
+				call inString
+				cmp num9, 0
+				jne successe9
+				call errorIn
+				jmp goed9a	
+		
+		successe9: call successe
+		bye9:ret
+editC9	endp
+
+				

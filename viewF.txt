@@ -1,0 +1,241 @@
+;---------------------------------------------------VIEW CONTACTS FUNCTION
+viewC	proc near
+		call cls
+		mov ah,2
+		mov dl, 10
+		int 21h
+		gotoxy 0,3
+		lea dx, header
+		call cout	
+		
+		cmp num0,0
+		jne Cprint0
+		call printS	
+	pp1: cmp num1,0
+		jne Cprint1
+		call printS
+	pp2: cmp num2, 0
+		jne Cprint2
+		call printS
+	pp3: cmp num3, 0
+		jne Cprint3
+		call printS
+	pp4: cmp num4, 0
+		jne Cprint4
+		call printS
+	pp5: cmp num5, 0
+		jne Cprint5
+		call printS
+	pp6: cmp num6, 0
+		jne Cprint6
+		call printS
+	pp7: cmp num7, 0
+		jne Cprint7
+		call printS
+	pp8: cmp num8, 0
+		jne Cprint8
+		call printS
+	pp9: cmp num9, 0
+		jne Cprint9
+		call printS
+	
+	pressenterv:		mov ah,9
+				lea dx, prENTER
+				int 21h
+			mov ah, 1
+			int 21h
+			cmp al, 13
+			jne pressenterv
+			ret
+			
+	Cprint0: call print0
+			 jmp pp1
+	Cprint1: call print1
+			 jmp pp2
+	Cprint2: call print2
+			 jmp pp3
+	Cprint3: call print3
+			 jmp pp4
+	Cprint4: call print4
+			 jmp pp5
+	Cprint5: call print5
+			 jmp pp6
+	Cprint6: call print6
+			 jmp pp7
+	Cprint7: call print7
+			 jmp pp8
+	Cprint8: call print8
+			 jmp pp9
+	Cprint9: call print9
+			 jmp pressenterv
+			
+viewC	endp
+;--------------------------------------NO CONTACT DISPLAY
+printS	proc near
+		mov ah,9
+		lea dx, noC
+		int 21h
+		ret
+printS	endp
+
+;-----------------------------------PRINT CONTACT
+print0		proc near
+			gotoxy 8,6
+			mov ah,2
+			mov dl, '0'
+			int 21h
+			gotoxy 12,6
+			lea dx, name0
+			mov ah,9
+			int 21h
+			gotoxy 39,6
+			lea dx, num0
+			mov ah,9
+			int 21h
+			ret
+print0 endp
+
+print1		proc near
+			gotoxy 8,7
+			mov ah,2
+			mov dl, '1'
+			int 21h
+			gotoxy 12,7
+			lea dx, name1
+			mov ah,9
+			int 21h
+			gotoxy 39,7
+			lea dx, num1
+			mov ah,9
+			int 21h
+			ret
+print1 endp
+
+print2		proc near
+			gotoxy 8,8
+			mov ah,2
+			mov dl, '2'
+			int 21h
+			gotoxy 12,8
+			lea dx, name2
+			mov ah,9
+			int 21h
+			gotoxy 39,8
+			lea dx, num2
+			mov ah,9
+			int 21h
+			ret
+print2 endp
+
+print3		proc near
+			gotoxy 8,9
+			mov ah,2
+			mov dl, '3'
+			int 21h
+			gotoxy 12,9
+			lea dx, name3
+			mov ah,9
+			int 21h
+			gotoxy 39,9
+			lea dx, num3
+			mov ah,9
+			int 21h
+			ret
+print3 endp
+
+print4		proc near
+			gotoxy 8,10
+			mov ah,2
+			mov dl, '4'
+			int 21h
+			gotoxy 12,10
+			lea dx, name4
+			mov ah,9
+			int 21h
+			gotoxy 39,10
+			lea dx, num4
+			mov ah,9
+			int 21h
+			ret
+print4 endp
+
+print5		proc near
+			gotoxy 8,11
+			mov ah,2
+			mov dl, '5'
+			int 21h
+			gotoxy 12,11
+			lea dx, name5
+			mov ah,9
+			int 21h
+			gotoxy 39,11
+			lea dx, num5
+			mov ah,9
+			int 21h
+			ret
+print5 endp
+
+print6		proc near
+			gotoxy 8,12
+			mov ah,2
+			mov dl, '6'
+			int 21h
+			gotoxy 12,12
+			lea dx, name6
+			mov ah,9
+			int 21h
+			gotoxy 39,12
+			lea dx, num6
+			mov ah,9
+			int 21h
+			ret
+print6 endp
+
+print7		proc near
+			gotoxy 8,13
+			mov ah,2
+			mov dl, '7'
+			int 21h
+			gotoxy 12,13
+			lea dx, name7
+			mov ah,9
+			int 21h
+			gotoxy 39,13
+			lea dx, num7
+			mov ah,9
+			int 21h
+			ret
+print7 endp
+
+print8		proc near
+			gotoxy 8,14
+			mov ah,2
+			mov dl, '8'
+			int 21h
+			gotoxy 12,14
+			lea dx, name8
+			mov ah,9
+			int 21h
+			gotoxy 39,14
+			lea dx, num8
+			mov ah,9
+			int 21h
+			ret
+print8 endp
+
+print9		proc near
+			gotoxy 8,15
+			mov ah,2
+			mov dl, '9'
+			int 21h
+			gotoxy 12,15
+			lea dx, name9
+			mov ah,9
+			int 21h
+			gotoxy 39,15
+			lea dx, num9
+			mov ah,9
+			int 21h
+			ret
+print9 endp
+	
